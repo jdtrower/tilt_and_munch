@@ -78,3 +78,19 @@ def find_complementary_color(bg_color):
 
     # return the complementary color
     return (comp_r, comp_g, comp_b)
+
+# Setup the welcome screen
+def welcome_screen():
+    display.clear()
+    bg_color = (random_color())
+    txt_color = text_color(bg_color)
+    display.fill(bg_color)
+    display.draw_text("Tilt", x=85, y=10, scale=3, color=txt_color, background=bg_color)
+    display.draw_text("&", x=110, y=40, scale=4, color=txt_color, background=bg_color)
+    display.draw_text("Munch", x=80, y=75, scale=3, color=txt_color, background=bg_color)
+    display.draw_text("Player 1: Press A", x=15, y=110, scale=2, color=txt_color, background=bg_color)
+    display.draw_text("Player 2: Press B", x=15, y=130, scale=2, color=txt_color, background=bg_color)
+    display.draw_text("Tilt device to", x=35, y=155, scale=2, color=txt_color, background=bg_color)
+    display.draw_text("munch on yummy dots", x=5, y=175, scale=2, color=txt_color, background=bg_color)
+    display.draw_text("but avoid the edge", x=15, y=195, scale=2, color=txt_color, background=bg_color)
+    display.draw_text("of the screen", x=40, y=215, scale=2, color=txt_color, background=bg_color)
