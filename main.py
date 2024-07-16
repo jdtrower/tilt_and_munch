@@ -105,5 +105,18 @@ def welcome_screen():
     display.draw_text("but avoid the edge", x=15, y=195, scale=2, color=txt_color, background=bg_color)
     display.draw_text("of the screen", x=40, y=215, scale=2, color=txt_color, background=bg_color)
 
+# Setup the exit program screen
+def exit_program():
+    display.clear()
+    clear_lights()
+    bg_color = (random_color())
+    txt_color = text_color(bg_color)
+    display.fill(bg_color)
+    display.draw_text("Thank you", x=40, y=20, color=fg_color, background=bg_color, scale=3)
+    display.draw_text("for playing!", x=15, y=50, color=fg_color, background=bg_color, scale=3)
+    display.draw_text("Designed &", x=60, y=120, color=fg_color, background=bg_color, scale=2)
+    display.draw_text("Created by", x=60, y=150, color=fg_color, background=bg_color, scale=2)
+    display.draw_text("David Trower", x=15, y=180, color=fg_color, background=bg_color, scale=3)
+
 # Display welcome screen to start the game
 welcome_screen()
