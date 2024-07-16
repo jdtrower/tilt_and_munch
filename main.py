@@ -11,6 +11,8 @@ fg_color = (255, 255, 255)
 comp_color = (0, 0, 255)
 dot_x = 0
 dot_y = 0
+player = 0
+start_game = 0
 
 # Generate a randomly generated RGB color
 def random_color():
@@ -159,6 +161,31 @@ welcome_screen()
 
 # Main loop
 while True:
+    # Check if the game is started
+    if start_game == 0:
+        # Check if Button A is pressed to start the game for player 1
+        if buttons.was_pressed(BTN_A):
+            player = 1
+            display.clear()
+            clear_lights()
+            leds.set(5, True)
+            leds.set(4, False)
+            start_game = 1
+            # If player 1 hasn't played yet, set up the game
+            if not p1_has_played:
+                game_setup()
+
+        # Check if Button B is pressed to start the game for player 2
+        if buttons.was_pressed(BTN_B):
+            player = 2
+            display.clear()
+            clear_lights()
+            leds.set(4, True)
+            leds.set(5, False)
+            start_game = 1
+            # If player 2 hasn't played yet, set up the game
+            if not p2_has_played:
+                game_setup()
     # Check if Down Button is pressed to exit the game
     if buttons.was_pressed(BTN_D):
         break
