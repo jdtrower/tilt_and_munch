@@ -101,6 +101,19 @@ def scale_accel_to_screen(axis, min_val, max_val, screen_dim):
     # Ensure coordinates are within the bounds of the screen.
     return max(0, min(screen_coord, screen_dim - 1))
 
+# Draw a ball on the screen at an (x, y) coordinate
+def draw_ball(new_x, new_y, old_x, old_y):
+    global fg_color, bg_color
+
+    # Cover up the previously drawn circle
+    display.fill_circle(old_x, old_y, BALL_RADIUS, bg_color)
+
+    # Draw the new circle
+    display.fill_circle(new_x, new_y, BALL_RADIUS, fg_color)
+
+    # Return the new x and y coordinates
+    return new_x, new_y
+
 # Draw a dot on screen at an (x, y) coordinate
 def generate_random_dot():
     global dot_x, dot_y, comp_color
