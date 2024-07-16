@@ -3,6 +3,9 @@ from codex import *
 # Constants
 SCREEN_WIDTH = 240
 SCREEN_HEIGHT = 240
+CENTER_X = SCREEN_WIDTH // 2
+CENTER_Y = SCREEN_HEIGHT // 2
+BALL_RADIUS = 15
 DOT_RADIUS = 5
 
 # Initialize global variables
