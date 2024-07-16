@@ -20,9 +20,18 @@ old_y = CENTER_Y
 dot_x = 0
 dot_y = 0
 score = 0
+p1_score = 0
+p2_score = 0
 lives = 3
 player = 0
 start_game = 0
+p1_has_played = False
+p2_has_played = False
+
+# Initialize variables for non-blocking delay
+collision_detected = False
+collision_time = 0
+collision_delay = 1  # 1 second delay
 
 # Generate a randomly generated RGB color
 def random_color():
@@ -144,6 +153,28 @@ def detect_dot_collision(ball_x, ball_y, dot_x, dot_y):
     # TODO: Play a sound effect each time the ball eats a dot
     distance = math.sqrt((ball_x - dot_x) ** 2 + (ball_y - dot_y) ** 2)
     return distance <= (BALL_RADIUS + DOT_RADIUS)
+
+# Detect a collision between the ball and the edge of the screen
+def detect_edge_collision(ball_x, ball_y):
+    # TODO: Play a sound effect when the ball collides with the edge of the screen to warn the user
+    global lives, score, p1_score, p1_has_played, p2_score, p2_has_played, start_game, collision_detected, collision_time
+
+    # Gets the value of a monotonic clock (a clock that cannot go backward)
+    current_time = time.monotonic()
+
+    # Check if we are in the delay state
+    if collision_detected:
+        if current_time - collision_time >= collision_delay:
+            collision_detected = False
+        else:
+            return  # Exit the function to allow other parts of the program to run
+
+    # test if the ball is touching the edge of the screen
+    if (ball_x - BALL_RADIUS <= 0) or (ball_x + BALL_RADIUS >= SCREEN_WIDTH) or \
+    (ball_y - BALL_RADIUS <= 0) or (ball_y + BALL_RADIUS >= SCREEN_HEIGHT):
+        lives -= 1
+        collision_detected = True
+        collision_time = current_time
 
 # Turn off all pixels and LEDs
 def clear_lights():
