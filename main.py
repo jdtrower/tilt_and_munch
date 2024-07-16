@@ -4,6 +4,8 @@ from codex import *
 bg_color = (0, 0, 0)
 fg_color = (255, 255, 255)
 comp_color = (0, 0, 255)
+dot_x = 0
+dot_y = 0
 
 # Generate a randomly generated RGB color
 def random_color():
