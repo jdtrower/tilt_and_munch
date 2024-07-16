@@ -282,6 +282,9 @@ while True:
             score += 1 # increase the score
             display.fill_circle(dot_x, dot_y, DOT_RADIUS, bg_color) # remove the old dot
             generate_random_dot() # generate a new dot
+
+        # Detect collision with screen edges
+        detect_edge_collision(new_x, new_y)
         
     # Check if Down Button is pressed to exit the game
     if buttons.was_pressed(BTN_D):
