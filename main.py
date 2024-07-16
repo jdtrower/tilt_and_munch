@@ -3,6 +3,7 @@ from codex import *
 # Initialize global variables
 bg_color = (0, 0, 0)
 fg_color = (255, 255, 255)
+comp_color = (0, 0, 255)
 
 # Generate a randomly generated RGB color
 def random_color():
@@ -64,3 +65,16 @@ def text_color(background_color):
         # This ensures that there is always sufficient contrast between foreground and background colors
         bg_color = (random_color())
         fg_color = text_color(bg_color)
+
+# Find a complementary color to the background color
+def find_complementary_color(bg_color):
+    # Break the tuple into it's individual parts and assign them to variables for r, g, and b
+    r, g, b = bg_color
+
+    # Invert each component by subtracting it from 255
+    comp_r = 255 - r
+    comp_g = 255 - g
+    comp_b = 255 - b
+
+    # return the complementary color
+    return (comp_r, comp_g, comp_b)
