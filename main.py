@@ -373,6 +373,24 @@ while True:
                 player = 2
             else:
                 player = 1
+
+    # Check if a game isn't in progress but one of the players hasn't played yet this game
+    if start_game == 0 and (((not p1_has_played) and (p2_has_played)) or ((p1_has_played) and (not p2_has_played))):
+        # Check if Up Button is pressed to start second round
+        if buttons.was_pressed(BTN_U):
+            display.clear()
+            clear_lights()
+            # Set the relevant LED for Player 1/2
+            if player == 1:
+                leds.set(5, True)
+                leds.set(4, False)
+            if player == 2:
+                leds.set(4, True)
+                leds.set(5, False)
+            # Mark the game as started
+            start_game = 1
+            # Set up the game
+            game_setup()
         
     # Check if Down Button is pressed to exit the game
     if buttons.was_pressed(BTN_D):
