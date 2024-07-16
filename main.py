@@ -1,5 +1,10 @@
 from codex import *
 
+# Constants
+SCREEN_WIDTH = 240
+SCREEN_HEIGHT = 240
+DOT_RADIUS = 5
+
 # Initialize global variables
 bg_color = (0, 0, 0)
 fg_color = (255, 255, 255)
