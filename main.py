@@ -242,6 +242,12 @@ while True:
 
         # Draw the ball at the new position
         old_x, old_y = draw_ball(new_x, new_y, old_x, old_y)
+
+        # Detect collision with the dot
+        if detect_dot_collision(new_x, new_y, dot_x, dot_y):
+            score += 1 # increase the score
+            display.fill_circle(dot_x, dot_y, DOT_RADIUS, bg_color) # remove the old dot
+            generate_random_dot() # generate a new dot
         
     # Check if Down Button is pressed to exit the game
     if buttons.was_pressed(BTN_D):
