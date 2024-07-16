@@ -88,6 +88,17 @@ def find_complementary_color(bg_color):
     # return the complementary color
     return (comp_r, comp_g, comp_b)
 
+# Scale the accelerometer value to screen coordinates
+def scale_accel_to_screen(axis, min_val, max_val, screen_dim):
+    # Scale the accelerometer value
+    scaled = (axis - min_val) / (max_val - min_val)
+    
+    # Map the scaled value to the screen coodinates
+    screen_coord = int(scaled * (screen_dim - 1))
+
+    # Ensure coordinates are within the bounds of the screen.
+    return max(0, min(screen_coord, screen_dim - 1))
+
 # Draw a dot on screen at an (x, y) coordinate
 def generate_random_dot():
     global dot_x, dot_y, comp_color
