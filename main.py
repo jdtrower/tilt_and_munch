@@ -79,6 +79,16 @@ def find_complementary_color(bg_color):
     # return the complementary color
     return (comp_r, comp_g, comp_b)
 
+# Turn off all pixels and LEDs
+def clear_lights():
+    # Turn all pixels and LEDs off
+    num_pixels = 4
+    num_leds = 6
+    for i in range(num_pixels):
+        pixels.set(i, (0, 0, 0))
+    for j in range(num_leds):
+        leds.set(j, False)
+
 # Setup the welcome screen
 def welcome_screen():
     display.clear()
