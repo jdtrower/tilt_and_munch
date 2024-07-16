@@ -136,6 +136,12 @@ def generate_random_dot():
     # Draw the dot on screen
     display.fill_circle(dot_x, dot_y, DOT_RADIUS, comp_color)
 
+# Detect a collision between the ball and the dot
+def detect_dot_collision(ball_x, ball_y, dot_x, dot_y):
+    # TODO: Play a sound effect each time the ball eats a dot
+    distance = math.sqrt((ball_x - dot_x) ** 2 + (ball_y - dot_y) ** 2)
+    return distance <= (BALL_RADIUS + DOT_RADIUS)
+
 # Turn off all pixels and LEDs
 def clear_lights():
     # Turn all pixels and LEDs off
