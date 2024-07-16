@@ -11,6 +11,8 @@ fg_color = (255, 255, 255)
 comp_color = (0, 0, 255)
 dot_x = 0
 dot_y = 0
+score = 0
+lives = 3
 player = 0
 start_game = 0
 
@@ -203,6 +205,12 @@ while True:
         # Capture the accelerometer data
         xyz = accel.read()
         tilt_x, tilt_y, tilt_z = xyz
+
+        # Ensure the game is still running
+        if start_game != 0:
+            # Display the player's score and remaining lives on the screen
+            display.draw_text(f"Player {player} Score: {score}", x=5, y=230, color=fg_color, background=bg_color, scale=1)
+            display.draw_text(f"Lives: {lives}", x=190, y=230, color=fg_color, background=bg_color, scale=1)
 
         # Scale accelerometer values to screen coordinates
         new_x = scale_accel_to_screen(tilt_x, -16576, 16576, SCREEN_WIDTH)
