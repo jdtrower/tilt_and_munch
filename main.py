@@ -197,6 +197,13 @@ while True:
             # If player 2 hasn't played yet, set up the game
             if not p2_has_played:
                 game_setup()
+
+    # Check if the game has started
+    if start_game == 1:
+        # Capture the accelerometer data
+        xyz = accel.read()
+        tilt_x, tilt_y, tilt_z = xyz
+        
     # Check if Down Button is pressed to exit the game
     if buttons.was_pressed(BTN_D):
         break
