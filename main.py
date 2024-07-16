@@ -122,6 +122,18 @@ def welcome_screen():
     display.draw_text("but avoid the edge", x=15, y=195, scale=2, color=txt_color, background=bg_color)
     display.draw_text("of the screen", x=40, y=215, scale=2, color=txt_color, background=bg_color)
 
+# Setup game play screen
+def game_setup():
+    global bg_color, fg_color, comp_color
+    display.clear()
+    bg_color = (random_color())
+    fg_color = text_color(bg_color)
+    comp_color = find_complementary_color(bg_color)
+    display.fill(bg_color)
+
+    # Generate a random dot on screen
+    generate_random_dot()
+
 # Setup the exit program screen
 def exit_program():
     display.clear()
