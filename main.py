@@ -391,6 +391,9 @@ while True:
             start_game = 1
             # Set up the game
             game_setup()
+
+    # TODO: Add a restart button that can allow the players to start a new game after both players have played
+    #       the previous game.
         
     # Check if Down Button is pressed to exit the game
     if buttons.was_pressed(BTN_D):
