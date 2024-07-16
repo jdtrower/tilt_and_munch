@@ -121,5 +121,11 @@ def exit_program():
 # Display welcome screen to start the game
 welcome_screen()
 
+# Main loop
+while True:
+    # Check if Down Button is pressed to exit the game
+    if buttons.was_pressed(BTN_D):
+        break
+
 # Call the exit program function to clean up and shut down the program
 exit_program()
