@@ -79,6 +79,23 @@ def find_complementary_color(bg_color):
     # return the complementary color
     return (comp_r, comp_g, comp_b)
 
+# Draw a dot on screen at an (x, y) coordinate
+def generate_random_dot():
+    global dot_x, dot_y, comp_color
+
+    # Randomly generate an x and y position for the dot
+    dot_x = random.randint(5, SCREEN_WIDTH - 5)
+    dot_y = random.randint(5, SCREEN_HEIGHT - 5)
+
+    # Check if generated dot is located in the corners of the screen where the ball can't reach
+    # If so, generate a new random dot in a new location on screen
+    if (dot_x < 20 and dot_y < 20) or (dot_x > 220 & dot_y < 20) or\
+    (dot_x < 20 & dot_y > 220) or (dot_x > 220 and dot_y > 220):
+        generate_random_dot()
+
+    # Draw the dot on screen
+    display.fill_circle(dot_x, dot_y, DOT_RADIUS, comp_color)
+
 # Turn off all pixels and LEDs
 def clear_lights():
     # Turn all pixels and LEDs off
