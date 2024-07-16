@@ -94,3 +94,6 @@ def welcome_screen():
     display.draw_text("munch on yummy dots", x=5, y=175, scale=2, color=txt_color, background=bg_color)
     display.draw_text("but avoid the edge", x=15, y=195, scale=2, color=txt_color, background=bg_color)
     display.draw_text("of the screen", x=40, y=215, scale=2, color=txt_color, background=bg_color)
+
+# Display welcome screen to start the game
+welcome_screen()
