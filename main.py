@@ -2,6 +2,7 @@ from codex import *
 
 # Initialize global variables
 bg_color = (0, 0, 0)
+fg_color = (255, 255, 255)
 
 # Generate a randomly generated RGB color
 def random_color():
@@ -35,3 +36,31 @@ def luminance(color):
 
     # Calculate the relative luminance of a color and return it to the function call
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+# Determine the best text color based on the relative luminance of the background color
+def text_color(background_color):
+    # Set colors white and black as tuples.
+    white = (255, 255, 255)
+    black = (0, 0, 0)
+
+    # Calculate the relative luminance of our background color, white, and black
+    bg_luminance = luminance(background_color)
+    white_luminance = luminance(white)
+    black_luminance = luminance(black)
+
+    # Calculate the contrast ratio between white and the background color
+    contrast_with_white = (white_luminance + 0.05) / (bg_luminance + 0.05)
+
+    # Calculate the contrast ratio between the background color and black
+    contrast_with_black = (bg_luminance + 0.05) / (black_luminance + 0.05)
+
+    # Return the color with the highest contrast ratio
+    if contrast_with_white >= 7:
+        return white
+    elif contrast_with_black >= 7:
+        return black
+    else:
+        # If both contrasts are below 7:1, generate a new background color and then re-test for the text color
+        # This ensures that there is always sufficient contrast between foreground and background colors
+        bg_color = (random_color())
+        fg_color = text_color(bg_color)
