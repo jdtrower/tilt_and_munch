@@ -285,6 +285,90 @@ while True:
 
         # Detect collision with screen edges
         detect_edge_collision(new_x, new_y)
+
+        # Check if no lives are left, if so end the round/game
+        if lives == 0:
+            display.clear()
+            start_game = 0
+            if player == 1:
+                # Save player 1's score
+                p1_score = score
+                # Reset lives
+                lives = 3
+                # Mark player 1 as having played
+                p1_has_played = True
+            if player == 2:
+                # Save player 2's score
+                p2_score = score
+                # Reset lives
+                lives = 3
+                # Mark player 2 as having played
+                p2_has_played = True
+            # Check if one of the players hasn't played yet
+            if (not p1_has_played and p2_has_played) or (p1_has_played and not p2_has_played):
+                display.clear()
+                bg_color = (random_color())
+                txt_color = text_color(bg_color)
+                display.fill(bg_color)
+                # Display results from first round
+                display.draw_text("Round Over!", x=25, y=10, color=fg_color, background=bg_color, scale=3)
+                display.draw_text(f"Player {player} Score:", x=35, y=50, color=fg_color, background=bg_color, scale=2)
+                display.draw_text(str(score), x=35, y=75, color=fg_color, background=bg_color, scale=5)
+                display.draw_text("Let's see if", x=45, y=130, color=fg_color, background=bg_color, scale=2)
+                if player == 1:
+                    display.draw_text(f"Player 2", x=75, y=150, color=fg_color, background=bg_color, scale=2)
+                if player == 2:
+                    display.draw_text(f"Player 1", x=75, y=150, color=fg_color, background=bg_color, scale=2)
+                display.draw_text("can beat your score", x=7, y=170, color=fg_color, background=bg_color, scale=2)
+                if player == 1:
+                    display.draw_text(f"Player 2 to begin", x=20, y=200, color=fg_color, background=bg_color, scale=2)
+                if player == 2:
+                    display.draw_text(f"Player 1 to begin", x=20, y=200, color=fg_color, background=bg_color, scale=2)
+                display.draw_text("Press Up Button", x=35, y=220, color=fg_color, background=bg_color, scale=2)
+                # Reset score for next round
+                score = 0
+            # Check if both players have played a round
+            if p1_has_played == True and p2_has_played == True:
+                display.clear()
+                bg_color = (random_color())
+                txt_color = text_color(bg_color)
+                display.fill(bg_color)
+
+                # Display results from game
+                display.draw_text("Game Over!", x=40, y=20, color=fg_color, background=bg_color, scale=3)
+                display.draw_text("Let's see who won", x=20, y=50, color=fg_color, background=bg_color, scale=2)
+                display.draw_text(f"Player 1 Score: {p1_score}", x=5, y=90, color=fg_color, background=bg_color, scale=2)
+                display.draw_text(f"Player 2 Score: {p2_score}", x=5, y=110, color=fg_color, background=bg_color, scale=2)
+                if p1_score > p2_score:
+                    display.draw_text("Player 1", x=30, y=150, color=fg_color, background=bg_color, scale=4)
+                    display.draw_text("Wins!", x=65, y=190, color=fg_color, background=bg_color, scale=4)
+                elif p1_score < p2_score: 
+                    display.draw_text("Player 2", x=30, y=150, color=fg_color, background=bg_color, scale=4)
+                    display.draw_text("Wins!", x=65, y=190, color=fg_color, background=bg_color, scale=4)
+                else:
+                    display.draw_text("Players", x=35, y=150, color=fg_color, background=bg_color, scale=4)
+                    display.draw_text("Tied!", x=65, y=190, color=fg_color, background=bg_color, scale=4)
+
+                # Play fanfare sound effect - this code to create the fanfare is from Firia Labs - CodeX Mission 13
+                trumpet.play()
+                for freq1 in range(500, 1500, 100):
+                    for freq2 in range(freq1, freq1 + 1000, 100):
+                        trumpet.set_pitch(freq2)
+                        time.sleep(0.023)
+                
+                for repeats in range(10):
+                    trumpet.play()
+                    time.sleep(0.1)
+                    trumpet.stop()
+                    time.sleep(0.05)
+
+                trumpet.stop() # End of code from Firia Labs
+
+            # Switch players
+            if player == 1:
+                player = 2
+            else:
+                player = 1
         
     # Check if Down Button is pressed to exit the game
     if buttons.was_pressed(BTN_D):
