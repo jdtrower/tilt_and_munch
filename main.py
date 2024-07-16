@@ -120,3 +120,6 @@ def exit_program():
 
 # Display welcome screen to start the game
 welcome_screen()
+
+# Call the exit program function to clean up and shut down the program
+exit_program()
