@@ -233,6 +233,9 @@ while True:
         # Scale accelerometer values to screen coordinates
         new_x = scale_accel_to_screen(tilt_x, -16576, 16576, SCREEN_WIDTH)
         new_y = scale_accel_to_screen(tilt_y, -16576, 16576, SCREEN_HEIGHT)
+
+        # Draw the ball at the new position
+        old_x, old_y = draw_ball(new_x, new_y, old_x, old_y)
         
     # Check if Down Button is pressed to exit the game
     if buttons.was_pressed(BTN_D):
