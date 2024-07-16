@@ -1,4 +1,5 @@
 from codex import *
+from soundlib import *
 import time
 import random
 import math
@@ -32,6 +33,9 @@ p2_has_played = False
 collision_detected = False
 collision_time = 0
 collision_delay = 1  # 1 second delay
+
+# Soundmaker tones and music
+trumpet = soundmaker.get_tone("trumpet")
 
 # Generate a randomly generated RGB color
 def random_color():
