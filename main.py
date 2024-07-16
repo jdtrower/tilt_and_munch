@@ -203,6 +203,10 @@ while True:
         # Capture the accelerometer data
         xyz = accel.read()
         tilt_x, tilt_y, tilt_z = xyz
+
+        # Scale accelerometer values to screen coordinates
+        new_x = scale_accel_to_screen(tilt_x, -16576, 16576, SCREEN_WIDTH)
+        new_y = scale_accel_to_screen(tilt_y, -16576, 16576, SCREEN_HEIGHT)
         
     # Check if Down Button is pressed to exit the game
     if buttons.was_pressed(BTN_D):
